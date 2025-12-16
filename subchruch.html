@@ -1,0 +1,437 @@
+<!-- subchurches.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="transitions.css">
+  <title>Sub Churches | C.S.I District Church Kallankuzhi</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #800000;
+      color: white;
+      padding: 20px 0;
+      text-align: center;
+    }
+
+
+    nav {
+  background-color: rgba(255, 255, 255, 0.5); /* keeps your dark look but translucent */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* for Safari */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* optional subtle shadow */
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 10px; /* your original padding */
+}
+
+nav a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-weight: bold;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background 0.3s, box-shadow 0.3s;
+}
+
+nav a:hover {
+  background-color: rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.4);
+}
+
+
+
+
+nav a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+nav a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+    .content {
+      padding: 20px;
+      background: white;
+      max-width: 1200px;
+      margin: 20px auto;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .subchurch {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-bottom: 40px;
+      gap: 20px;
+      animation: fadeInUp 0.6s ease-in-out;
+    }
+
+    .subchurch img {
+      max-width: 300px;
+      border-radius: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    }
+
+    .subchurch-description {
+      flex: 1;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.85);
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .modal-content {
+      margin: 5% auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 90%;
+      text-align: center;
+      position: relative;
+      animation: zoomIn 0.4s ease;
+    }
+
+    .modal-content img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 15px;
+      border-radius: 10px;
+    }
+
+    .modal-description {
+      font-size: 18px;
+      color: #333;
+    }
+
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      color: #333;
+      font-size: 30px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+   footer {
+  background-color: #222;
+  color: white;
+  padding: 40px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+  font-size: 14px;
+}
+
+.footer-section {
+  flex: 1 1 250px;
+  margin: 10px;
+}
+
+.footer-section h4 {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #f0dcdc;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 6px;
+}
+
+.footer-section ul li a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-section ul li a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.footer-social a {
+  margin-right: 10px;
+  color: #ccc;
+  font-size: 18px;
+  transition: color 0.3s;
+}
+
+.footer-social a:hover {
+  color: #fff;
+}
+
+.footer-bottom {
+  text-align: center;
+  width: 100%;
+  margin-top: 30px;
+  border-top: 1px solid #444;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #aaa;
+}
+
+@media (max-width: 768px) {
+  footer {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin: 20px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer-section ul {
+    padding: 0;
+    text-align: center;
+  }
+
+  .footer-social {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-social a {
+    margin: 8px;
+  }
+}
+
+
+
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes zoomIn {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .subchurch {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .subchurch img {
+        width: 100%;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="church-header">
+  <div class="logo-container">
+    <img src="CSI_Church_Kallankuzhi_Transparent.png" alt="Church Logo">
+  </div>
+  <div class="title-container">
+    <h1>C.S.I District Church Kallankuzhi</h1>
+  </div>
+</header>
+
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="history.html">History</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="offerings.html">Offerings</a>
+    <a href="subchruch.html">Sub Churches</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="social.html">social Media</a>
+    <a href="form.html">Feedback</a>
+  </nav>
+<div class="fade-in">
+  <div class="content">
+    <div class="subchurch">
+      <img src="44.jpg" alt="	Marankonam"
+        onclick="openModal('44.jpg', 'This sub-church is known for its vibrant Sunday school, active youth fellowship, and outreach programs in nearby villages.')">
+      <div class="subchurch-description">
+        <h2>	Marankonam CSI  Church</h2>
+        <p>This sub-church is known for its vibrant Sunday school, active youth fellowship, and outreach programs in nearby villages.</p>
+      </div>
+    </div>
+
+    <div class="subchurch">
+      <img src="Andamparai.jpg" alt="Andamparai CSI Church"
+        onclick="openModal('Andamparai.jpg', 'Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.')">
+      <div class="subchurch-description">
+        <h2>Andamparai CSI Church </h2>
+        <p>Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.</p>
+      </div>
+    </div>
+    <div class="subchurch">
+      <img src="Hackerpuram.jpg" alt="Hackerpuram CSI Church"
+        onclick="openModal('Hackerpuram.jpg', 'Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.')">
+      <div class="subchurch-description">
+        <h2>Hackerpuram CSI Church</h2>
+        <p>Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.</p>
+      </div>
+    </div>
+    <div class="subchurch">
+      <img src="Konathuvilai.jpg" alt="Konathuvilai CSI Church "
+        onclick="openModal('Konathuvilai.jpg', 'Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.')">
+      <div class="subchurch-description">
+        <h2>Konathuvilai CSI Church</h2>
+        <p>Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.</p>
+      </div>
+    </div>
+    <div class="subchurch">
+      <img src="Pilankantuvilai.jpg" alt="Pilankantuvilai CSI Church"
+        onclick="openModal('Pilankantuvilai.jpg', 'Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.')">
+      <div class="subchurch-description">
+        <h2>Pilankantuvilai CSI Church</h2>
+        <p>Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.</p>
+      </div>
+    </div>
+    <div class="subchurch">
+      <img src="Pullani.jpg" alt="CSI Church, Pullani"
+        onclick="openModal('Pullani.jpg', 'Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.')">
+      <div class="subchurch-description">
+        <h2>Pullani CSI Church </h2>
+        <p>Located in the outskirts, this church is committed to spiritual growth and social work, supporting elderly care and educational drives.</p>
+      </div>
+    </div>
+    
+  </div>
+  </div>
+
+  <div id="imageModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img id="modalImg" src="" alt="Full Image" />
+      <div class="modal-description" id="modalDesc"></div>
+    </div>
+  </div>
+
+<footer>
+  <div class="footer-section">
+    <h4>Contact Us</h4>
+    <p>C.S.I District Church Kallankuzhi</p>
+    <p>Kallankuzhi, Tamil Nadu - 629166</p>
+    <p>Email: info@csikallankuzhi.org</p>
+    <p>Phone: +91-98765-43210</p>
+  </div>
+
+  <div class="footer-section">
+    <h4>Quick Links</h4>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="gallery.html">Gallery</a></li>
+      <li><a href="schedule.html">Schedule</a></li>
+      <li><a href="social.html">Social Media</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-section">
+    <h4>Follow Us</h4>
+    <div class="footer-social">
+      <a href="https://www.facebook.com/csichurchkallankuzhi/" target="_blank" title="Facebook"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+<path fill="#039be5" d="M24 5A19 19 0 1 0 24 43A19 19 0 1 0 24 5Z"></path><path fill="#fff" d="M26.572,29.036h4.917l0.772-4.995h-5.69v-2.73c0-2.075,0.678-3.915,2.619-3.915h3.119v-4.359c-0.548-0.074-1.707-0.236-3.897-0.236c-4.573,0-7.254,2.415-7.254,7.917v3.323h-4.701v4.995h4.701v13.729C22.089,42.905,23.032,43,24,43c0.875,0,1.729-0.08,2.572-0.194V29.036z"></path>
+</svg></a>
+      <a href="https://www.youtube.com/@CSI_Districtchurch_Kallankuzhi/streams" target="_blank" title="YouTube"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+<path fill="#FF3D00" d="M43.2,33.9c-0.4,2.1-2.1,3.7-4.2,4c-3.3,0.5-8.8,1.1-15,1.1c-6.1,0-11.6-0.6-15-1.1c-2.1-0.3-3.8-1.9-4.2-4C4.4,31.6,4,28.2,4,24c0-4.2,0.4-7.6,0.8-9.9c0.4-2.1,2.1-3.7,4.2-4C12.3,9.6,17.8,9,24,9c6.2,0,11.6,0.6,15,1.1c2.1,0.3,3.8,1.9,4.2,4c0.4,2.3,0.9,5.7,0.9,9.9C44,28.2,43.6,31.6,43.2,33.9z"></path><path fill="#FFF" d="M20 31L20 17 32 24z"></path>
+</svg></a>
+      <a href="https://www.instagram.com/_csi_kallankuzhi?igsh=Ynl1MmlpeHpyYm9n" target="_blank" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+<radialGradient id="yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1" cx="19.38" cy="42.035" r="44.899" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#fd5"></stop><stop offset=".328" stop-color="#ff543f"></stop><stop offset=".348" stop-color="#fc5245"></stop><stop offset=".504" stop-color="#e64771"></stop><stop offset=".643" stop-color="#d53e91"></stop><stop offset=".761" stop-color="#cc39a4"></stop><stop offset=".841" stop-color="#c837ab"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8ma_Xy10Jcu1L2Su_gr1)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><radialGradient id="yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2" cx="11.786" cy="5.54" r="29.813" gradientTransform="matrix(1 0 0 .6663 0 1.849)" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#4168c9"></stop><stop offset=".999" stop-color="#4168c9" stop-opacity="0"></stop></radialGradient><path fill="url(#yOrnnhliCrdS2gy~4tD8mb_Xy10Jcu1L2Su_gr2)" d="M34.017,41.99l-20,0.019c-4.4,0.004-8.003-3.592-8.008-7.992l-0.019-20	c-0.004-4.4,3.592-8.003,7.992-8.008l20-0.019c4.4-0.004,8.003,3.592,8.008,7.992l0.019,20	C42.014,38.383,38.417,41.986,34.017,41.99z"></path><path fill="#fff" d="M24,31c-3.859,0-7-3.14-7-7s3.141-7,7-7s7,3.14,7,7S27.859,31,24,31z M24,19c-2.757,0-5,2.243-5,5	s2.243,5,5,5s5-2.243,5-5S26.757,19,24,19z"></path><circle cx="31.5" cy="16.5" r="1.5" fill="#fff"></circle><path fill="#fff" d="M30,37H18c-3.859,0-7-3.14-7-7V18c0-3.86,3.141-7,7-7h12c3.859,0,7,3.14,7,7v12	C37,33.86,33.859,37,30,37z M18,13c-2.757,0-5,2.243-5,5v12c0,2.757,2.243,5,5,5h12c2.757,0,5-2.243,5-5V18c0-2.757-2.243-5-5-5H18z"></path>
+</svg></a>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    &copy; 2025 C.S.I District Church Kallankuzhi. All Rights Reserved.
+  </div>
+</footer>
+
+
+  <script>
+    function openModal(src, description) {
+      document.getElementById("modalImg").src = src;
+      document.getElementById("modalDesc").textContent = description;
+      document.getElementById("imageModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+
+    window.onclick = function (event) {
+      const modal = document.getElementById("imageModal");
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    };
+  </script>
+</body>
+
+</html>

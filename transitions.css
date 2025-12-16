@@ -1,0 +1,87 @@
+/* transitions.css */
+
+/* Remove page-level transition */
+body {
+  animation: none;
+}
+
+/* Apply fade-in only to content area */
+.fade-in {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: fadeInContent 0.8s ease forwards;
+}
+
+@keyframes fadeInContent {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Optional reusable animations */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* logo.css */
+
+.church-header {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  background-color: #800000;
+  color: white;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.logo-container img {
+  height: 100px;
+  width: auto;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.title-container {
+  flex: 1;
+  text-align: center;
+}
+
+.title-container h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.title-container p {
+  margin: 0;
+  font-size: 16px;
+  color: #f0dcdc;
+}
+
+@media (max-width: 768px) {
+  .church-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo-container {
+    margin-bottom: 10px;
+  }
+}
+
